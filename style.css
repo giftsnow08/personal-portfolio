@@ -1,0 +1,644 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700&display=swap');
+
+/* =====================
+   CSS Variables
+   ===================== */
+:root {
+  --color-bg: #ffffff;
+  --color-bg-alt: #f8fafc;
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-text: #334155;
+  --color-text-muted: #64748b;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-heading: #0f172a;
+  --color-card-bg: #ffffff;
+  --color-footer-bg: #0f172a;
+  --color-footer-text: #cbd5e1;
+
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-heading: 'Poppins', system-ui, sans-serif;
+
+  --max-width: 1100px;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* =====================
+   Dark Mode
+   ===================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0f172a;
+    --color-bg-alt: #1e293b;
+    --color-surface: #1e293b;
+    --color-border: #334155;
+    --color-text: #cbd5e1;
+    --color-text-muted: #94a3b8;
+    --color-primary: #60a5fa;
+    --color-primary-hover: #93c5fd;
+    --color-heading: #f1f5f9;
+    --color-card-bg: #1e293b;
+    --color-footer-bg: #020617;
+    --color-footer-text: #64748b;
+  }
+}
+
+/* =====================
+   Reset & Base
+   ===================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: var(--color-heading);
+  line-height: 1.3;
+}
+
+/* =====================
+   Header & Navigation
+   ===================== */
+body > header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.875rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+body > header > div > a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-heading);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+body > header > div > a:hover {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+body > header > div > a img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+nav a {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition: color 0.15s, background-color 0.15s;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: var(--color-primary);
+  background-color: var(--color-bg-alt);
+  text-decoration: none;
+}
+
+nav a[aria-current="page"] {
+  color: var(--color-primary);
+  font-weight: 600;
+  background-color: var(--color-bg-alt);
+}
+
+/* =====================
+   Main & Footer
+   ===================== */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+body > footer {
+  background-color: var(--color-footer-bg);
+  color: var(--color-footer-text);
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.875rem;
+  margin-top: auto;
+}
+
+body > footer p {
+  margin: 0;
+}
+
+/* =====================
+   HOME — Hero
+   ===================== */
+.hero {
+  text-align: center;
+  padding: 3rem 0 2.5rem;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 2.5rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero p {
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+}
+
+/* =====================
+   HOME — Overview Grid (3 columns)
+   ===================== */
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 700px) {
+  .overview-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem 2.5rem;
+  }
+}
+
+.overview-grid > * > h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+/* Projects aside */
+.overview-grid > aside ul li {
+  padding: 0.2rem 0;
+}
+
+.overview-grid > aside ul li a {
+  font-size: 0.875rem;
+}
+
+/* Work experience articles */
+.overview-grid > section:first-of-type article {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.overview-grid > section:first-of-type article:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.overview-grid > section:first-of-type article h3 {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.overview-grid > section:first-of-type article p {
+  font-size: 0.825rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.overview-grid > section:first-of-type article a {
+  font-size: 0.8rem;
+}
+
+/* Education column */
+.overview-grid > section:last-of-type > p {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.overview-grid > section:last-of-type h3 {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.overview-grid > section:last-of-type ul {
+  list-style: disc;
+  padding-left: 1.1rem;
+}
+
+.overview-grid > section:last-of-type ul li {
+  font-size: 0.825rem;
+  color: var(--color-text-muted);
+  padding: 0.1rem 0;
+}
+
+/* =====================
+   HOME — Reviews
+   ===================== */
+.reviews-section {
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.reviews-section > h2 {
+  font-size: 1.3rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 700px) {
+  .reviews-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.review-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+}
+
+.review-card blockquote p {
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  line-height: 1.55;
+}
+
+.review-card > footer {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  text-align: left;
+  border: none;
+}
+
+.review-card > footer cite {
+  display: block;
+  font-weight: 600;
+  font-size: 0.875rem;
+  font-style: normal;
+  color: var(--color-heading);
+}
+
+.review-card > footer p {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* =====================
+   PROJECTS PAGE
+   ===================== */
+.projects-section > h1 {
+  margin-bottom: 0.5rem;
+}
+
+.projects-section > p {
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+}
+
+.project-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.2s, transform 0.15s;
+}
+
+.project-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.project-card h2 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.project-card > p {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.project-card ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.project-card ul li {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.2rem;
+}
+
+.project-card > a {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+  padding: 0.3rem 1rem;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.15s, color 0.15s;
+  text-decoration: none;
+}
+
+.project-card > a:hover {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* =====================
+   ARTICLES PAGE
+   ===================== */
+.articles-section > h1 {
+  margin-bottom: 0.5rem;
+}
+
+.articles-section > p {
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.article-card {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.article-card:first-of-type {
+  border-top: 1px solid var(--color-border);
+}
+
+.article-card > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  background: transparent;
+  border: none;
+  padding: 0;
+  position: static;
+}
+
+.article-card > header h2 {
+  font-size: 1.05rem;
+}
+
+.article-card > header h2 a {
+  color: var(--color-heading);
+  font-weight: 600;
+}
+
+.article-card > header h2 a:hover {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.article-card time {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding-top: 0.2rem;
+}
+
+.article-card > p {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.article-card > a {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* =====================
+   CONTACT PAGE
+   ===================== */
+.contact-section > h1 {
+  margin-bottom: 0.5rem;
+}
+
+.contact-section > p {
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 700px) {
+  .contact-layout {
+    grid-template-columns: 3fr 2fr;
+  }
+}
+
+.contact-form-section h2,
+.contact-info-section h2 {
+  font-size: 1.15rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 0.625rem 1.5rem;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.contact-info-section address {
+  font-style: normal;
+}
+
+.contact-info-section ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-info-section li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.contact-info-section strong {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+}
+
+.contact-info-section a {
+  font-size: 0.875rem;
+  word-break: break-all;
+}
+
+/* =====================
+   Small screen tweaks
+   ===================== */
+@media (max-width: 699px) {
+  .hero h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero {
+    padding: 2rem 0 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body > header {
+    padding: 0.75rem 1rem;
+  }
+
+  body > header > div > a span {
+    font-size: 0.8rem;
+  }
+
+  nav a {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  main {
+    padding: 1.25rem 1rem;
+  }
+}
